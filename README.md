@@ -1,4 +1,4 @@
-# USSR: Universal Server Side Renderer
+# Universal Server Side Renderer
 
 ## Description
 

@@ -37,4 +37,4 @@ import { ServerSideRendererService } from './ssr.service';
   controllers: [ServerSideRendererController],
   providers: [ServerSideRendererService],
 })
-export class ServerSideRendererModule {}
+export class ApplicationModule {}

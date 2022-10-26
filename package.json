@@ -1,6 +1,6 @@
 {
   "name": "server-side-renderer",
-  "description": "USSR: Universal Server Side Renderer",
+  "description": "Universal Server Side Renderer",
   "version": "1.0.0-RC-1",
   "author": "MTS Marcin Stasiak",
   "private": true,
