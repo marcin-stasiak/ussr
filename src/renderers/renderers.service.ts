@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import puppeteer, { Puppeteer } from 'puppeteer';
+import puppeteer from 'puppeteer';
 
 @Injectable()
-export class ServerSideRendererService {
+export class RenderersService {
   public async renderer(url: string): Promise<string> {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();

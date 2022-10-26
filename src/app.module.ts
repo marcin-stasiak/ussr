@@ -4,12 +4,14 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { join } from 'path';
+import { DataSourceOptions } from 'typeorm/data-source/DataSourceOptions';
 
 import appConfig from './configs/app.config';
 import databaseConfig from './configs/database.config';
 
-import { ServerSideRendererController } from './ssr.controller';
-import { ServerSideRendererService } from './ssr.service';
+import { ApplicationController } from './app.controller';
+import { PagesCacheModule } from './pages/pages.module';
+import { RenderersModule } from './renderers/renderers.module';
 
 @Module({
   imports: [
@@ -20,12 +22,10 @@ import { ServerSideRendererService } from './ssr.service';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('database.host'),
-        port: configService.get('database.port'),
+        type: 'sqlite',
         database: configService.get('database.name'),
-        username: configService.get('database.username'),
-        password: configService.get('database.password'),
+        // username: configService.get('database.username'),
+        // password: configService.get('database.password'),
         entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         autoLoadEntities: true,
         synchronize: true,
@@ -33,8 +33,9 @@ import { ServerSideRendererService } from './ssr.service';
       }),
       inject: [ConfigService],
     }),
+    PagesCacheModule,
+    RenderersModule,
   ],
-  controllers: [ServerSideRendererController],
-  providers: [ServerSideRendererService],
+  controllers: [ApplicationController],
 })
 export class ApplicationModule {}
