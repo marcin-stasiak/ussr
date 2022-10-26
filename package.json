@@ -1,6 +1,6 @@
 {
   "name": "server-side-renderer",
-  "description": "Server Side Renderer",
+  "description": "USSR: Universal Server Side Renderer",
   "version": "1.0.0-RC-1",
   "author": "MTS Marcin Stasiak",
   "private": true,
@@ -26,10 +26,13 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.1.0",
+    "@nestjs/typeorm": "^9.0.1",
     "puppeteer": "^19.1.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "sqlite3": "^5.1.2",
+    "typeorm": "^0.3.10"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

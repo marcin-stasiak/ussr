@@ -1,8 +1,8 @@
-# Server Side Renderer
+# USSR: Universal Server Side Renderer
 
 ## Description
 
-Universal Server Side Renderer
+It's basically **Universal Server Side Renderer** but written specifically for **Magento PWA**.
 
 ## Installation
 
@@ -48,4 +48,4 @@ $ npm run test:cov
 
 ## License
 
-[MIT licensed](LICENSE).
+[MIT licensed](LICENSE)
