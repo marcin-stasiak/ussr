@@ -2,7 +2,7 @@
 
 ## Description
 
-It's basically **Universal Server Side Renderer** but written specifically for **Magento PWA**.
+It's basically **Universal Server Side Renderer** but written and tested specifically for **Magento PWA**.
 
 ## Installation
 
