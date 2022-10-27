@@ -1,13 +1,13 @@
 import { Controller, Get, Req } from '@nestjs/common';
 
-import { ServerSideRendererService } from './renderers/renderers.service';
+import { RenderersService } from './renderers/renderers.service';
 
 @Controller()
 export class ApplicationController {
-  constructor(private readonly ssrService: ServerSideRendererService) {}
+  constructor(private readonly renderersService: RenderersService) {}
 
   @Get('*')
   public async renderer(@Req() request): Promise<string> {
-    return await this.ssrService.renderer(request.url);
+    return await this.renderersService.initialize(request.url);
   }
 }
