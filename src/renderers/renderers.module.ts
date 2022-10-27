@@ -2,16 +2,16 @@ import { Module, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { PagesCacheModule } from '../pages/pages.module';
-import { BrowserService } from './browser.service';
+import { BrowserProvider } from './browser.provider';
 import { RenderersService } from './renderers.service';
 
 @Module({
   imports: [ConfigModule, PagesCacheModule],
-  exports: [BrowserService, RenderersService],
-  providers: [BrowserService, RenderersService],
+  exports: [BrowserProvider, RenderersService],
+  providers: [BrowserProvider, RenderersService],
 })
 export class RenderersModule implements OnModuleInit, OnModuleDestroy {
-  constructor(private readonly browserService: BrowserService) {}
+  constructor(private readonly browserService: BrowserProvider) {}
 
   public async onModuleInit(): Promise<void> {
     await this.browserService.launchBrowser();

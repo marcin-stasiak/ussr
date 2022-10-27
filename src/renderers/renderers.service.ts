@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { PagesCacheService } from '../pages/pages.service';
-import { BrowserService } from './browser.service';
+import { BrowserProvider } from './browser.provider';
 
 @Injectable()
 export class RenderersService {
@@ -10,7 +10,7 @@ export class RenderersService {
 
   constructor(
     private readonly configService: ConfigService,
-    private readonly browserService: BrowserService,
+    private readonly browserService: BrowserProvider,
     private readonly pagesCacheService: PagesCacheService,
   ) {}
 

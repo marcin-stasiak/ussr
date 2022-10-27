@@ -6,8 +6,8 @@ import puppeteer, { Browser } from 'puppeteer';
 import { PagesCacheService } from '../pages/pages.service';
 
 @Injectable()
-export class BrowserService {
-  private readonly logger = new Logger(BrowserService.name);
+export class BrowserProvider {
+  private readonly logger = new Logger(BrowserProvider.name);
   public browser: Browser;
 
   constructor(private readonly configService: ConfigService) {}
