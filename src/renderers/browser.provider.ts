@@ -1,9 +1,7 @@
-import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import puppeteer, { Browser } from 'puppeteer';
-
-import { PagesCacheService } from '../pages/pages.service';
 
 @Injectable()
 export class BrowserProvider {
@@ -13,7 +11,10 @@ export class BrowserProvider {
   constructor(private readonly configService: ConfigService) {}
 
   public async launchBrowser(): Promise<void> {
-    this.browser = await puppeteer.launch({ headless: true, args: ['--single-process'] });
+    this.browser = await puppeteer.launch({
+      headless: true,
+      args: this.configService.get('ssr.args'),
+    });
 
     if (this.browser) {
       this.logger.log('Browser launched');

@@ -8,11 +8,12 @@ import { UpdatePageDto } from './dto/update-page.dto';
 import { Page } from './entities/page.entity';
 
 @Injectable()
-export class PagesCacheService {
+export class PagesService {
+  k;
   constructor(@InjectRepository(Page) private readonly pageRepository: Repository<Page>) {}
 
-  public async create(createUser: CreatePageDto): Promise<Page> {
-    const create = this.pageRepository.create(createUser);
+  public async create(createPage: CreatePageDto): Promise<Page> {
+    const create = this.pageRepository.create(createPage);
 
     return await this.pageRepository.save(create);
   }
@@ -23,10 +24,6 @@ export class PagesCacheService {
 
   public async findOneById(id: string): Promise<Page> {
     return await this.pageRepository.findOne({ where: { id: id } });
-  }
-
-  public async findOneByUrl(url: string): Promise<Page> {
-    return await this.pageRepository.findOne({ where: { url: url } });
   }
 
   public async update(updatePage: UpdatePageDto): Promise<Page> {

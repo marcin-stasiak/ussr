@@ -4,28 +4,25 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { join } from 'path';
-import { DataSourceOptions } from 'typeorm/data-source/DataSourceOptions';
 
 import appConfig from './configs/app.config';
-import databaseConfig from './configs/database.config';
+import cacheConfig from './configs/ssr.config';
 
 import { ApplicationController } from './app.controller';
-import { PagesCacheModule } from './pages/pages.module';
+import { CachesModule } from './caches/caches.module';
 import { RenderersModule } from './renderers/renderers.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [appConfig, databaseConfig],
+      load: [appConfig, cacheConfig],
     }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'sqlite',
-        database: configService.get('database.name'),
-        // username: configService.get('database.username'),
-        // password: configService.get('database.password'),
+        database: configService.get('ssr.cache'),
         entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         autoLoadEntities: true,
         synchronize: true,
@@ -33,7 +30,7 @@ import { RenderersModule } from './renderers/renderers.module';
       }),
       inject: [ConfigService],
     }),
-    PagesCacheModule,
+    CachesModule,
     RenderersModule,
   ],
   controllers: [ApplicationController],

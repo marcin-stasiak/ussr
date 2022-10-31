@@ -1,14 +1,14 @@
 import { Module, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { PagesCacheModule } from '../pages/pages.module';
+import { CachesModule } from '../caches/caches.module';
 import { BrowserProvider } from './browser.provider';
-import { RenderersService } from './renderers.service';
+import { RenderersProvider } from './renderers.provider';
 
 @Module({
-  imports: [ConfigModule, PagesCacheModule],
-  exports: [BrowserProvider, RenderersService],
-  providers: [BrowserProvider, RenderersService],
+  imports: [ConfigModule, CachesModule],
+  exports: [RenderersProvider],
+  providers: [BrowserProvider, RenderersProvider],
 })
 export class RenderersModule implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly browserService: BrowserProvider) {}

@@ -1,12 +1,12 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('pages')
-export class Page extends BaseEntity {
+@Entity('caches')
+export class Cache extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Column()
-  public url: string;
+  public path: string;
 
   @Column()
   public content: string;
