@@ -25,7 +25,7 @@ export class CachesService {
     return await this.cacheRepository.findOne({ where: { id: id } });
   }
 
-  public async findOneByUrl(path: string): Promise<Cache> {
+  public async findOneByPath(path: string): Promise<Cache> {
     return await this.cacheRepository.findOne({ where: { path: path } });
   }
 

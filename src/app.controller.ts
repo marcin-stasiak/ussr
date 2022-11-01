@@ -1,9 +1,15 @@
 import { Controller, Get, Req } from '@nestjs/common';
 
+import { RenderersProvider } from './renderers/renderers.provider';
+
 @Controller()
 export class ApplicationController {
-  @Get('/')
+  constructor(private readonly renderersProvider: RenderersProvider) {}
+
+  @Get('*')
   public async renderer(@Req() request): Promise<string> {
-    return 'Hello World!';
+    if (request.headers.accept.includes('text/html')) {
+      return await this.renderersProvider.initialize(request.path);
+    }
   }
 }
