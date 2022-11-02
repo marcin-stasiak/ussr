@@ -1,9 +1,8 @@
 {
-  "name": "server-side-renderer",
+  "name": "ussr",
   "description": "Universal Server Side Renderer",
-  "version": "1.0.0-RC-1",
+  "version": "1.0.0",
   "author": "MTS Marcin Stasiak",
-  "private": true,
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
