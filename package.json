@@ -27,6 +27,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.0.0",
     "@nestjs/typeorm": "^9.0.0",
+    "amqp-connection-manager": "^4.1.9",
+    "amqplib": "^0.10.3",
     "class-validator": "^0.13.2",
     "puppeteer": "^19.1.2",
     "reflect-metadata": "^0.1.13",
