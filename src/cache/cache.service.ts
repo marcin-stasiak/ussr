@@ -8,7 +8,7 @@ import { UpdateCacheDto } from './dto/update-cache.dto';
 import { Cache } from './entities/cache.entity';
 
 @Injectable()
-export class CachesService {
+export class CacheService {
   constructor(@InjectRepository(Cache) private readonly cacheRepository: Repository<Cache>) {}
 
   public async create(createCache: CreateCacheDto): Promise<Cache> {

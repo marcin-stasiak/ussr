@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CachesService } from './caches.service';
+import { CacheService } from './cache.service';
 import { Cache } from './entities/cache.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Cache])],
-  exports: [CachesService],
-  providers: [CachesService],
+  exports: [CacheService],
+  providers: [CacheService],
 })
-export class CachesModule {}
+export class CacheModule {}

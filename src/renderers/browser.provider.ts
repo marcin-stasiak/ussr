@@ -13,7 +13,7 @@ export class BrowserProvider {
   public async launchBrowser(): Promise<void> {
     this.browser = await puppeteer.launch({
       headless: true,
-      args: this.configService.get('ssr.args'),
+      args: this.configService.get('render.args'),
     });
 
     if (this.browser) {

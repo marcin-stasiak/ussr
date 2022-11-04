@@ -6,23 +6,24 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 
 import appConfig from './configs/app.config';
-import cacheConfig from './configs/ssr.config';
+import queuingConfig from './configs/queue.config';
+import rendererConfig from './configs/render.config';
 
 import { ApplicationController } from './app.controller';
-import { CachesModule } from './caches/caches.module';
+import { CacheModule } from './cache/cache.module';
 import { RenderersModule } from './renderers/renderers.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [appConfig, cacheConfig],
+      load: [appConfig, queuingConfig, rendererConfig],
     }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'sqlite',
-        database: configService.get('ssr.cache'),
+        database: configService.get('render.cache'),
         entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         autoLoadEntities: true,
         synchronize: true,
@@ -30,7 +31,7 @@ import { RenderersModule } from './renderers/renderers.module';
       }),
       inject: [ConfigService],
     }),
-    CachesModule,
+    CacheModule,
     RenderersModule,
   ],
   controllers: [ApplicationController],
