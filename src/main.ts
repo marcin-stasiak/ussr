@@ -8,10 +8,10 @@ import { ApplicationModule } from './app.module';
   const app = await NestFactory.create(ApplicationModule);
   const configService = app.get(ConfigService);
 
-  const name = configService.get('queuing.name');
-  const host = configService.get('queuing.host');
-  const user = configService.get('queuing.user');
-  const password = configService.get('queuing.password');
+  const name = configService.get('queue.name');
+  const host = configService.get('queue.host');
+  const user = configService.get('queue.user');
+  const password = configService.get('queue.password');
 
   await app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,

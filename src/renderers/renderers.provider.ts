@@ -52,11 +52,20 @@ export class RenderersProvider {
 
         await page.close();
 
-        if (status === 200) {
+        if (status > 1) {
           this.logger.log(`${status}: ${url}`);
 
           cache.path = path;
           cache.content = content;
+
+          const dd = await this.queueService.send(
+            {
+              cmd: 'add-subscriber',
+            },
+            'dd',
+          );
+
+          console.log(dd);
 
           await this.cachesService.create(cache);
 
